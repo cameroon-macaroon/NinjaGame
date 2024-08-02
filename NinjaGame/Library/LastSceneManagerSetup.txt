@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Unity Technologies/LowpolyCharacterRio/Scenes/DemoScene.unity
+- path: Assets/Scenes/GameMechanicsTesting.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
