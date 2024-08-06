@@ -68,11 +68,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        //player is ready to jump
         ResetJump();
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        //establish normal scale
         startYScale = transform.localScale.y;
     }
     
@@ -112,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
         //to jump
         if(Input.GetKey(jumpKey) && readyToJump && grounded)
         {
-            Debug.Log("jump");
             readyToJump = false;
             
             Jump();
@@ -121,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //to crouch
-        if (Input.GetKeyDown(crouchKey))
+        if (Input.GetKeyDown(crouchKey) && grounded)
         {
             //squish player obj
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -149,13 +150,11 @@ public class PlayerMovement : MonoBehaviour
                 desiredMoveSpeed = sprintSpeed;
         
         }
-
         else if (Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
         }
-
         else if (grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;
